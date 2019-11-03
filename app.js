@@ -26,12 +26,13 @@ app.get('/results', function (req, res) {
             else if (rows.length > 0) {
                 //console.log(rows)
                 let movieArr=[];
-                var data = JSON.stringify(rows);
+                let data = rows;
                // data=JSON.parse(data);
-                console.log(data)
+               // console.log(data)
                 movieArr.push(data);
+                console.log(movieArr);
                 //res.render('index', { list: movie_array, title: "softwaress.co", message: "Movie Searching Api" });
-                res.render('results',{movieArr:movieArr})
+                res.render('results',{movieArr:movieArr[0]})
 
             }
             else {
@@ -42,8 +43,9 @@ app.get('/results', function (req, res) {
                 request(url, function (error, response, body) {
                     if (!error && response.statusCode == 200) {
                         var data = JSON.parse(body)
-                    
                         movieArr.push(data);
+                        //console.log(data)
+                        console.log(movieArr)
                         res.render('results',{movieArr:movieArr})
                         
                         
@@ -74,12 +76,11 @@ app.get('/results', function (req, res) {
 
             }
             else if (rows.length > 0) {
-                var movieArr = JSON.stringify(rows);
+                let data = rows;
+                movieArr.push(data);
+                console.log(movieArr);
                 //res.render('index', { list: movie_array, title: "softwaress.co", message: "Movie Searching Api" });
-                res.send({
-                    movieArr
-                });
-
+                res.render('results',{movieArr:movieArr[0]})
             }
             else {
                 let query = req.query.search;
@@ -93,14 +94,12 @@ app.get('/results', function (req, res) {
                         var data = JSON.parse(body)
                         for(let i in data)
                         {
-                            console.log("-- "+data[i]);
                             movieArr.push(data[i]);
-                            
                         }
+                        
                         //console.log(data)
-                        res.send({
-                            movieArr
-                        });
+                        console.log(movieArr)
+                        res.render('results',{movieArr:movieArr[0]})
                         //res.render('results', {data: data});
                     }
                 });
