@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+		<script src="/app.js"></script>
+
+<script>
+// 	function myFunction() {
+//   var coffee = document.forms[0];
+//   var txt = "";
+//   var i;
+//   for (i = 0; i < coffee.length; i++) {
+//     if (coffee[i].checked) {
+//       txt = txt + coffee[i].value + " ";
+//     }
+//   }
+//   document.getElementById("order").value = "You ordered a coffee with: " + txt;
+//}
+	</script>
+</head>
+<body>
+	<form action="/results" method="get">
+		<div class="container">
+				<form id="searchForm">
+				<h1>Search For a Movie</h1>
+			<div class="col-md-12">
+					<input type="text" name="search" placeholder="search term">
+					<label class="radio" >
+						<input type="radio" name="searchOpt" value="movieName" id="byName" checked="checked" /> search by name
+					  </label>
+					  <label class="radio" >
+						<input type="radio" name="searchOpt" value="movieId" onclick="" id="byId"  /> search by id
+					  </label>
+					<input type="submit" >
+			</div>
+			</form>
+			</div>
+	</form>
+</body>
+</html>
