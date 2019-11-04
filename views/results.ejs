@@ -23,6 +23,7 @@
 		<th>Cast</th>
 	    <th>Poster</th>
 	  </tr>	 
+
 	  <% for(var i=0; i<movieArr.length; i++) {%>
 			<tr>
 			  <td><%= movieArr[i].Title %></td>
@@ -34,6 +35,7 @@
 			  <td><img src="<%= movieArr[i].Poster %>"style="height:200px; width=200px"></style></td>
 			</tr>
 			<% } %>
+
 	</table>
 	<br/>
  	<a href="/">Search Again!</a>

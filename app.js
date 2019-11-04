@@ -20,18 +20,13 @@ app.get('/results', function (req, res) {
         sqlConnect.query(sqlQuery, (err, rows, fields) => {
             if (err) {
                 console.log(err.message);
-                //res.render('index', { list: err.message, title: "softwaress.co", message: "Movie Searching Api" });
-
+                res.render('results',{message:err.message})
             }
             else if (rows.length > 0) {
-                //console.log(rows)
                 let movieArr=[];
                 let data = rows;
-               // data=JSON.parse(data);
-               // console.log(data)
                 movieArr.push(data);
                 console.log(movieArr);
-                //res.render('index', { list: movie_array, title: "softwaress.co", message: "Movie Searching Api" });
                 res.render('results',{movieArr:movieArr[0]})
 
             }
@@ -44,21 +39,8 @@ app.get('/results', function (req, res) {
                     if (!error && response.statusCode == 200) {
                         var data = JSON.parse(body)
                         movieArr.push(data);
-                        //console.log(data)
                         console.log(movieArr)
                         res.render('results',{movieArr:movieArr})
-                        
-                        
-                        // res.send({
-                        //     "Name": data.Title,
-                        //     "Id": data.imdbID,
-                        //     "Year": data.Year,
-                        //     "Director": data.Director,
-                        //     "Cast": data.Actors,
-                        //     "Rating": data.imdbRating,
-                        //     "Image": data.Poster,
-                        //     movieArr
-                        // });
                     }
                 })
             }
@@ -72,35 +54,28 @@ app.get('/results', function (req, res) {
         sqlConnect.query(sqlQuery, (err, rows, fields) => {
             if (err) {
                 console.log(err.message);
-                //res.render('index', { list: err.message, title: "softwaress.co", message: "Movie Searching Api" });
-
             }
             else if (rows.length > 0) {
                 let data = rows;
                 movieArr.push(data);
                 console.log(movieArr);
-                //res.render('index', { list: movie_array, title: "softwaress.co", message: "Movie Searching Api" });
                 res.render('results',{movieArr:movieArr[0]})
             }
             else {
                 let query = req.query.search;
                 console.log(req.query);
                 let movieArr=[];
-                var url = 'https://www.omdbapi.com/?s=' + query + '&apikey=b60af205';
+                var url = 'http://www.omdbapi.com/?t=' + query + '&apikey=b60af205';
                 console.log(url)
                 request(url, function (error, response, body) {
-                    //console.log(body)
                     if (!error && response.statusCode == 200) {
                         var data = JSON.parse(body)
-                        for(let i in data)
-                        {
-                            movieArr.push(data[i]);
-                        }
-                        
-                        //console.log(data)
-                        console.log(movieArr)
-                        res.render('results',{movieArr:movieArr[0]})
-                        //res.render('results', {data: data});
+                        console.log("---body")
+                        console.log(body)
+                        console.log("---data")
+                        console.log(data)
+                        movieArr.push(data);
+                        res.render('results',{movieArr:movieArr})
                     }
                 });
             }
